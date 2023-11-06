@@ -1,0 +1,27 @@
+<h3>{{ post?.title }}</h3>
+<img class="img-responisve" src="{{ post?.image }}">
+<p>
+    {{ post?.description }}
+</p>
+<p>Author: {{ post?.author }}</p>
+<p>Date: {{ post?.dateCreated }}</p>
+<p></p>
+<div *ngFor="let comment of post?.comments">
+    <p>{{comment}}</p>
+
+</div>
+<br>
+<button (click)="onLike()" class="btn btn-danger">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16">
+        <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
+      </svg>&nbsp;Love
+     {{post?.likes}}
+</button><br>
+<br>
+<form (ngSubmit)="addComment()">
+    <input type="text" [(ngModel)]="newComment" name="newComment">
+    <button type="submit">Add Comment</button>
+</form>
+<br>
+<button class="btn btn-success"(click)="onEdit()">Edit</button> &nbsp;|
+<button class="btn btn-danger" (click)="delete()" >Delete</button>

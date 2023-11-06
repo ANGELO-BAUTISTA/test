@@ -1,0 +1,46 @@
+<h3 *ngIf="editMode==false">CREATE POST</h3>
+<h3 *ngIf="editMode==true">EDIT POST</h3>
+<form [formGroup] = "form" (ngSubmit)="onSubmit()" >
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="inputAddress">Title </label>
+        <input type="text" class="form-control" id="inputTitle" placeholder="Title" formControlName="title">
+      </div>
+      <br>
+      <div class="form-group col-md-6">
+        <label for="inputAddress2">Image</label>
+        <input type="text" class="form-control" id="inputImage" placeholder="Image" formControlName="image">
+        <img class="img-responsive" src="{{ form.value.image }}"/>
+      </div>
+      <br>
+    </div>
+    <div class="form-group col-md-6">
+      <label for="inputAddress3">Description</label>
+      <textarea type="text" class="form-control" id="inputDescription" placeholder="Description" formControlName="description"> </textarea>
+    </div> 
+    <br>
+    <div class="form-group col-md-6">
+      <label for="inputAddress4">Author</label>
+      <input type="text" class="form-control" id="inputAuthor" placeholder="Author" formControlName="author"> &nbsp;
+    </div> &nbsp;
+   <br>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="inputCity">Date</label>
+        <input 
+         type="text" 
+         class="form-control"
+         id="inputCity" 
+         formControlName="date">
+      </div> 
+      <br>
+    </div> &nbsp;
+    <button 
+    type="submit" 
+    class="btn btn-success" [disabled]="form.invalid">
+    Save</button> &nbsp;|
+    <button
+     type="reset" 
+     class="btn btn-primary">
+     Clear</button> 
+  </form>
