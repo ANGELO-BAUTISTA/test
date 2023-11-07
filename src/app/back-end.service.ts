@@ -11,22 +11,28 @@ export class BackEndService {
 
   constructor(private postService: PostService, private http: HttpClient) { }
 
-  saveData() {
-    const listOfPosts: Post[] = this.postService.getPost();
-    this.http.put(
-      'https://angularez-default-rtdb.firebaseio.com/posts.json',
-      listOfPosts)
-      .subscribe((res) => {
-        console.log(res)
-      })
+  saveData(){
+    const listofPosts: Post[] = this.postService.getPost();
+    this.http.put('https://angularez-default-rtdb.firebaseio.com/posts.json', listofPosts)
+    .subscribe((res) => {
+      console.log(res);
+    })
   }
-  fetchData() {
-   return this.http.get<Post[]>(
-      'https://angularez-default-rtdb.firebaseio.com/posts.json')
-      .pipe
-      (tap((listOfPosts: Post[]) => {
-        console.log(listOfPosts)
-        this.postService.setPosts(listOfPosts);
-      }));
+
+  fetchData(){
+    return this.http.get<Post[]>('https://angularez-default-rtdb.firebaseio.com/posts.json')
+    .pipe(tap((listofPosts: Post[])=> {
+      console.log(listofPosts)
+
+      listofPosts.forEach(post => {
+        if (!Array.isArray(post.comments)) {
+          post.comments = [];
+        }
+      });
+      
+      this.postService.setPosts(listofPosts);
+      this.postService.listChangedEvent.emit(listofPosts);
+    }))
+    .subscribe();
   }
 }
