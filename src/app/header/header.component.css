@@ -1,0 +1,30 @@
+.navbar {
+    background-color: #f8f9fa;
+    box-shadow: 0 4px 6px -3px rgba(0, 0, 0, 0.1);
+  }
+
+  .navbar-brand {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #333;
+  }
+
+  .navbar-nav .nav-link {
+    color: #333;
+    margin-right: 10px;
+  }
+
+  .btn-outline-success {
+    background-color: transparent;
+    color: #28a745;
+    border-color: #28a745;
+  }
+
+  .btn-outline-success:hover {
+    background-color: #28a745;
+    color: #fff;
+  }
+
+  .btn-outline-success:not(:last-child) {
+    margin-right: 10px;
+  }
