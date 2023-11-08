@@ -6,5 +6,8 @@
     height: auto; /* Maintains the aspect ratio */
   }
 
-
-  
+.container{
+   
+    justify-content: center;
+    align-items: center;
+}

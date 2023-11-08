@@ -30,6 +30,15 @@ export class PostComponent implements OnInit{
   onLike(){
     this.postService.onLike(this.index);
   }
+
+  onAngry() {
+    if (this.post) {
+    this.postService.onAngry(this.index);
+    }
+}
+
+  
+  
   addComment(){
     if (this.newComment){
       this.post?.comments.push(this.newComment);

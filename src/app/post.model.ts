@@ -6,6 +6,7 @@ export class Post{
         public author: string,
         public dateCreated: Date,
         public likes: number = 0,
+        public angry: number = 0,
         public comments: string[] = []
         ){ 
 

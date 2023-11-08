@@ -15,15 +15,10 @@ export class PostListComponent implements OnInit {
   constructor(private postService: PostService, private backEndService: BackEndService) {}
 
   ngOnInit(): void {
-    // this.backEndService.fetchData();
     this.listOfPosts=this.postService.getPost();
     this.postService.listChangedEvent.subscribe((posts: Post[]) => {
       this.listOfPosts = posts;
   });
-//  private fetchData(){
-//     this.backEndService.fetchData().subscribe(( Posts) =>{
-//       this.listOfPosts = Posts;
-  // });
     
   }
 }

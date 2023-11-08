@@ -23,16 +23,9 @@ export class BackEndService {
     return this.http.get<Post[]>('https://angularez-default-rtdb.firebaseio.com/posts.json')
     .pipe(tap((listofPosts: Post[])=> {
       console.log(listofPosts)
-
-      listofPosts.forEach(post => {
-        if (!Array.isArray(post.comments)) {
-          post.comments = [];
-        }
-      });
       
       this.postService.setPosts(listofPosts);
       this.postService.listChangedEvent.emit(listofPosts);
-    }))
-    .subscribe();
+    })).subscribe();
   }
 }

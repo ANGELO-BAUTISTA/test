@@ -1,7 +1,6 @@
 import { EventEmitter, Injectable } from "@angular/core";
 import { Post } from './post.model';
 import { HttpClient } from "@angular/common/http";
-import { Observable } from "rxjs";
 
 @Injectable({ providedIn: 'root' })
 export class PostService{
@@ -52,13 +51,21 @@ export class PostService{
       this.listOfPosts[index].likes += 1;
       this.saveData(); 
     }
+
+    onAngry(index: number){
+      this.listOfPosts[index].angry +=1;
+      this.saveData();
+
+    }
+    
     setPosts(listOfPosts: Post[]){
       this.listOfPosts = listOfPosts;
       this.listChangedEvent.emit(listOfPosts);
     }
 
     saveData() {
-        this.http.put('https://angularez-default-rtdb.firebaseio.com/posts.json', this.listOfPosts)
+        this.http.put('https://angularez-default-rtdb.firebaseio.com/posts.json', 
+        this.listOfPosts)
         .subscribe((res) => {
             console.log(res);
         });
