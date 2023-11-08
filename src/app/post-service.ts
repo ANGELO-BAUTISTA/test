@@ -1,52 +1,65 @@
-import { EventEmitter,Injectable } from '@angular/core';
+import { EventEmitter, Injectable } from "@angular/core";
 import { Post } from './post.model';
+import { HttpClient } from "@angular/common/http";
+import { Observable } from "rxjs";
 
-@Injectable ({ providedIn: 'root' })
+@Injectable({ providedIn: 'root' })
 export class PostService{
-    listChangedEvent: EventEmitter<Post[]> = new EventEmitter(); 
-    listOfPosts: Post[] = [
-      
-        // new Post(
-        //   'Shaq',
-        //   'https://techcrunch.com/wp-content/uploads/2023/09/edsoma-kyle-shaq.jpg?w=1390&crop=1',
-        //   'Edsoma, a startup that developed an AI-powered reading, education and communication platform for children, raised $2.5 million in a seed round led by Shaquille O’Neal. The trick? Founder and CEO Kyle Wallgren didn’t ask the NBA superstar and philanthropist for money.',
-        //   'Angelo Bautista',
-        //   new Date()
-        // ),
-        // new Post(
-        //   'Kain po tayo!',
-        //   'https://techcrunch.com/wp-content/uploads/2023/09/GettyImages-1060287836.jpg?w=1390&crop=1',
-        //   'Today, that group went a step further when the Linux Foundation announced OpenTofu, the official name for the Terraform fork, which will live forever under the auspices of the foundation as open source project. At the same time, the project announced it would be applying for entry into the Cloud Native Computing Foundation (CNCF).',
-        //   'Angelo Bautista',
-        //   new Date()
-        // ),
-        
-       
-    ];
-          getPost(){
-            return this.listOfPosts;
-          }
-          deleteButton(index: number){
-            this.listOfPosts.splice(index, 1)
-          }
-          addPost(post: Post){
-            if (this.listOfPosts === null ){
-              this.listOfPosts = []; 
-            }
-            this.listOfPosts.push(post);
-            this.listChangedEvent.emit(this.listOfPosts);
-          }
-          updatePost(index: number, post: Post){
-            this.listOfPosts[index] = post;
-          }
-          getSpecPost(index: number){
-            return this.listOfPosts[index];
-          }
-          onLike(index: number){
-            this.listOfPosts[index].likes += 1;
-          }
-          setPosts(listOfPosts: Post[]){
-            this.listOfPosts = listOfPosts;
-            this.listChangedEvent.emit(listOfPosts);
-          }
+    constructor(private http: HttpClient) {
+        this.fetchData();
+    }
+
+    listChangedEvent: EventEmitter<Post[]> = new EventEmitter();
+
+    listOfPosts: Post[] = [];
+
+    getPost(){
+      return this.listOfPosts;
+    }
+    deleteButton(index: number){
+      this.listOfPosts.splice(index, 1)
+      this.saveData(); 
+    }
+    addPost(post: Post){
+      this.listOfPosts.push(post);
+      this.saveData(); 
+      // this.listChangedEvent.emit(this.listOfPosts);
+    }
+    updatePost(index: number, post: Post){
+      this.listOfPosts[index] = post;
+      this.saveData(); 
+    }
+    getSpecPost(index: number){
+      return this.listOfPosts[index];
+    }
+    onLike(index: number){
+      this.listOfPosts[index].likes += 1;
+      this.saveData(); 
+    }
+    setPosts(listOfPosts: Post[]){
+      this.listOfPosts = listOfPosts;
+      this.listChangedEvent.emit(listOfPosts);
+    }
+
+    saveData() {
+        this.http.put('https://angularez-default-rtdb.firebaseio.com/posts.json', this.listOfPosts)
+        .subscribe((res) => {
+            console.log(res);
+        });
+    }
+
+    fetchData() {
+        this.http.get<Post[]>('https://angularez-default-rtdb.firebaseio.com/posts.json')
+        .subscribe((listofPosts: Post[]) => {
+            console.log(listofPosts)
+
+            listofPosts.forEach(post => {
+                if (!Array.isArray(post.comments)) {
+                    post.comments = [];
+                }
+            });
+            
+            this.setPosts(listofPosts);
+        });
+    }
 }
