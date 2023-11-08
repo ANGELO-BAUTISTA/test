@@ -1,0 +1,10 @@
+.img-responisve {
+    display: block; /* Ensures image behaves as a block element */
+    margin: 0 auto; /* Centers the image horizontally */
+    max-width: 100%; /* Limits the image size to its container width */
+    width: 80%; /* Set the image width to 80% of its container */
+    height: auto; /* Maintains the aspect ratio */
+  }
+
+
+  
