@@ -37,6 +37,10 @@
           <button class="nav-link btn btn-outline-success" type="submit" (click)="onFetch()">FETCH</button> &nbsp;&nbsp;
           <button class="nav-link btn btn-outline-success" type="submit">SIGN IN</button>
           <button class="nav-link btn btn-outline-success" type="submit">SIGN UP</button> -->
+          <button class="nav-link btn btn-outline-success" type="submit" >SIGN IN</button>
+          <button class="nav-link btn btn-outline-success" type="submit" >SIGN UP</button>
+          <input [(ngModel)]="searchKeyword" placeholder="Search posts">
+          <button class="btn btn-outline-success" (click)="searchPosts()">SEARCH</button>
         </form>
       </div>
     </div>

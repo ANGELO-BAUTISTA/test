@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BackEndService } from '../back-end.service';
+import { PostService } from '../post-service';
 
 
 @Component({
@@ -8,7 +9,11 @@ import { BackEndService } from '../back-end.service';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  constructor(private backEndService: BackEndService) { }
+  searchKeyword: string ="";
+  constructor(private backEndService: BackEndService, private postService: PostService
+  ) {
+    this.searchKeyword = '';
+  }
   ngOnInit(): void {
     
   }
@@ -20,4 +25,8 @@ export class HeaderComponent implements OnInit {
   onFetch () {
     this.backEndService.fetchData();
   }
+  searchPosts(){
+    this.postService.searchPosts(this.searchKeyword);
+  }
+                                                                    
 }

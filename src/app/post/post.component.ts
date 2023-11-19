@@ -24,7 +24,7 @@ export class PostComponent implements OnInit{
   delete(){
     this.postService.deleteButton(this.index);
   }
-  onEdit(){
+    onEdit(){
     this.router.navigate(['/post-edit', this.index]);
   }
   onLike(){

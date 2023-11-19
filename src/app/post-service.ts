@@ -1,14 +1,18 @@
 import { EventEmitter, Injectable } from "@angular/core";
 import { Post } from './post.model';
 import { HttpClient } from "@angular/common/http";
+import { Subject } from "rxjs";
 
 @Injectable({ providedIn: 'root' })
 export class PostService{
+
+  
     constructor(private http: HttpClient) {
         this.fetchData();
     }
 
     listChangedEvent: EventEmitter<Post[]> = new EventEmitter();
+    searchResults =new Subject<Post[]>();
 
     listOfPosts: Post[] = [
         /*
@@ -62,7 +66,11 @@ export class PostService{
       this.listOfPosts = listOfPosts;
       this.listChangedEvent.emit(listOfPosts);
     }
-
+    searchPosts(keyword: string): void {
+      const results = this.listOfPosts.filter(post => post.title.includes(keyword) || post.description.includes(keyword));
+      this.searchResults.next(results);
+    }
+      
     saveData() {
         this.http.put('https://angularez-default-rtdb.firebaseio.com/posts.json', 
         this.listOfPosts)
@@ -77,5 +85,7 @@ export class PostService{
             console.log(listofPosts)
             this.setPosts(listofPosts);
         });
-    }
+    } 
+    
+    
 }

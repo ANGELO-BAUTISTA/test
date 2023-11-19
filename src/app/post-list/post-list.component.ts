@@ -10,6 +10,8 @@ import { BackEndService } from '../back-end.service';
 })
 export class PostListComponent implements OnInit {
   listOfPosts: Post[] = []; 
+  searchResult: Post[] = [];
+  
   
 
   constructor(private postService: PostService, private backEndService: BackEndService) {}
@@ -18,6 +20,10 @@ export class PostListComponent implements OnInit {
     this.listOfPosts=this.postService.getPost();
     this.postService.listChangedEvent.subscribe((posts: Post[]) => {
       this.listOfPosts = posts;
+
+      this.postService.searchResults.subscribe(results => {
+        this.searchResult = results;
+      })
   });
     
   }
