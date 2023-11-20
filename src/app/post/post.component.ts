@@ -13,6 +13,7 @@ export class PostComponent implements OnInit{
   @Input() index: number = 1;
   @Input() post?: Post;
   newComment: any;
+  viewCount: number = 0;
   constructor(private postService: PostService, private router: Router) {
 
    }
@@ -20,6 +21,10 @@ export class PostComponent implements OnInit{
   ngOnInit(): void {
     console.log(this.post)
     console.log(this.index)
+    this.displayPost(this.post);
+  }
+  displayPost(post: any) {
+    this.viewCount++;
   }
   delete(){
     this.postService.deleteButton(this.index);

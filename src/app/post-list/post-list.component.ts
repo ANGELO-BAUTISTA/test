@@ -11,8 +11,8 @@ import { BackEndService } from '../back-end.service';
 export class PostListComponent implements OnInit {
   listOfPosts: Post[] = []; 
   searchResult: Post[] = [];
-  
-  
+  pageSize: number = 1; // Number of posts to display per page
+  currentPage: number = 0;
 
   constructor(private postService: PostService, private backEndService: BackEndService) {}
 
@@ -26,6 +26,30 @@ export class PostListComponent implements OnInit {
       })
   });
     
+  }
+  nextPage() {
+    this.currentPage++;
+  }
+
+  prevPage() {
+    if (this.currentPage > 1) {
+      this.currentPage--;
+    }
+  }
+
+  goToPage(pageNumber: number) {
+    this.currentPage = pageNumber;
+  }
+
+  getPaginatedPosts(): any[] {
+    const startIndex = (this.currentPage - 1) * this.pageSize;
+    const endIndex = startIndex + this.pageSize;
+    return this.listOfPosts.slice(startIndex, endIndex);
+  }
+
+  getPageNumbers(): number[] {
+    const pageCount = Math.ceil(this.listOfPosts.length / this.pageSize);
+    return Array.from({ length: pageCount }, (_, index) => index + 1);
   }
 }
 

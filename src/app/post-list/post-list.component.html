@@ -1,7 +1,22 @@
-<div *ngFor="let searchResult">
+<div *ngFor="let searchResult" class="center-content">
 <app-post [post]="searchResult"></app-post>
 </div>
 
-<div *ngFor = "let post of listOfPosts; let i = index">
+<div *ngFor = "let post of listOfPosts; let i = index" class="center-content">
 <app-post [post]="post" [index]="i" ></app-post>
 </div>
+<br> <br>
+
+<div class="center-content"> <!-- Centering container -->
+    <div *ngFor="let post of getPaginatedPosts(); let i = index">
+      <app-post [post]="post" [index]="i"></app-post>
+    </div>
+  
+    <!-- Pagination controls -->
+    <div>
+      <button (click)="prevPage()" class="btn btn-outline-primary">Previous Page</button>
+      <button *ngFor="let page of getPageNumbers()" (click)="goToPage(page)" class="btn btn-outline-primary">{{ page }}</button>
+      <button (click)="nextPage()" class="btn btn-outline-primary">Next Page</button>
+    </div>
+  </div>
+  

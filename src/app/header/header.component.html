@@ -4,9 +4,9 @@
 <nav class="navbar navbar-expand-lg bg-body-tertiary" style="position: fixed; width: 100%;">
     <div class="container-fluid">
       <a class="navbar-brand" routerLink="/post-list">CRUD</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
-      </button>
+      </button> -->
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
@@ -34,12 +34,10 @@
           <!-- <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
           <button class="btn btn-outline-success" type="submit">Search</button> -->
           <!-- <button class="nav-link btn btn-outline-success" type="submit" (click)="onSave()">SAVE</button> &nbsp;&nbsp;
-          <button class="nav-link btn btn-outline-success" type="submit" (click)="onFetch()">FETCH</button> &nbsp;&nbsp;
-          <button class="nav-link btn btn-outline-success" type="submit">SIGN IN</button>
-          <button class="nav-link btn btn-outline-success" type="submit">SIGN UP</button> -->
+          <button class="nav-link btn btn-outline-success" type="submit" (click)="onFetch()">FETCH</button> &nbsp;&nbsp; -->
           <button class="nav-link btn btn-outline-success" type="submit" >SIGN IN</button>
           <button class="nav-link btn btn-outline-success" type="submit" >SIGN UP</button>
-          <input [(ngModel)]="searchKeyword" placeholder="Search posts">
+          <input [(ngModel)]="searchKeyword" placeholder="Search">
           <button class="btn btn-outline-success" (click)="searchPosts()">SEARCH</button>
         </form>
       </div>
