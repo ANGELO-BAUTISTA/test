@@ -2,3 +2,8 @@
     align-items: center;
     text-align: center;
   }
+  .black-background {
+    background-color: black;
+    color: #fff; /* Adjust the text color based on your design */
+  }
+  

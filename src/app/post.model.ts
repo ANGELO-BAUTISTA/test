@@ -1,4 +1,5 @@
 export class Post{
+    content: any;
     constructor(
         public title: string,
         public image: string,

@@ -28,3 +28,6 @@
   .btn-outline-success:not(:last-child) {
     margin-right: 10px;
   }
+  .bg-orange {
+    background-color: orange;
+  }
