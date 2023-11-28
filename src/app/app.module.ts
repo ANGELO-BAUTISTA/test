@@ -9,13 +9,20 @@ import { PostComponent } from './post/post.component';
 import { PostEditComponent } from './post-edit/post-edit.component';
 import { PostListComponent } from './post-list/post-list.component';
 import { HttpClientModule } from '@angular/common/http';
+import { SignInComponent } from './sign-in/sign-in.component';
+import { SignUpComponent } from './sign-up/sign-up.component';
+import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
+import { environment } from './environment/environment';
+import { AngularFireModule } from '@angular/fire/compat';
 
 const routes: Routes = [
   { path: '', redirectTo: 'post-list', pathMatch: 'full'},
   { path: 'post-list', component: PostListComponent },
   { path: 'post-add', component: PostEditComponent },
   { path: 'authentication', component: AuthComponent },
-  { path: 'post-edit/:index', component: PostEditComponent }
+  { path: 'post-edit/:index', component: PostEditComponent },
+  {path: 'sign-in', component: SignInComponent},
+  {path: 'sign-up', component: SignUpComponent},
 ];
 
 @NgModule({
@@ -25,11 +32,18 @@ const routes: Routes = [
     HeaderComponent,
     PostComponent,
     PostEditComponent,
-    PostListComponent
+    PostListComponent,
+    SignInComponent,
+    SignUpComponent
   ],
   imports: [
-    BrowserModule,RouterModule.forRoot(routes),ReactiveFormsModule, FormsModule, HttpClientModule],
+    BrowserModule,
+    provideFirebaseApp(() => initializeApp(environment)),
+    AngularFireModule.initializeApp(environment),
+    RouterModule.forRoot(routes),
+    ReactiveFormsModule, FormsModule, 
+    HttpClientModule],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule { }

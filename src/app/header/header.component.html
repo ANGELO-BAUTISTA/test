@@ -3,7 +3,7 @@
 
 <nav class="navbar navbar-expand-lg bg-orange" style="position: fixed; width: 100%;">
     <div class="container-fluid">
-      <a class="navbar-brand" routerLink="/post-list">CRUD</a>
+      <a class="navbar-brand" routerLink="/post-list">POGIHUB</a>
       <!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button> -->
@@ -37,8 +37,8 @@
           <button class="nav-link btn btn-outline-success" type="submit" (click)="onFetch()">FETCH</button> &nbsp;&nbsp; -->
           <button class="nav-link" (click)="searchPosts()">SEARCH</button> &nbsp; &nbsp;
           <input [(ngModel)]="searchKeyword" placeholder="Search"> &nbsp;
-          <button class="nav-link" type="submit" >SIGN IN</button>&nbsp; &nbsp;
-          <button class="nav-link" type="submit" >SIGN UP</button>&nbsp; &nbsp;
+          <button class="nav-link" type="submit" routerLink="/sign-in">SIGN IN</button>&nbsp; &nbsp;
+          <button class="nav-link" type="submit" routerLink="/sign-up" >SIGN UP</button>&nbsp; &nbsp;
         </form>
       </div>
     </div>
