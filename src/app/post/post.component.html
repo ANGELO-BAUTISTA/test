@@ -32,7 +32,9 @@
           </svg>
         Comment</button>
     <input  type="text" [(ngModel)]="newComment" name="newComment">
-</form>
+</form><br>
+<app-star-rating [(rating)]="postRating"></app-star-rating>
+<p>Rating: {{ postRating }}</p>
 <br>
 <button class="btn btn-outline-success"(click)="onEdit()">
     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">

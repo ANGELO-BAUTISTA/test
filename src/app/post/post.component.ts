@@ -15,6 +15,7 @@ export class PostComponent implements OnInit{
   newComment: any;
   viewCount: number = 0;
   url?: string;
+  postRating: number = 0;
   constructor(private postService: PostService, private router: Router) {
 
    }

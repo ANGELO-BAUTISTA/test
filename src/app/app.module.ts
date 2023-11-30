@@ -14,6 +14,7 @@ import { SignUpComponent } from './sign-up/sign-up.component';
 import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
 import { environment } from './environment/environment';
 import { AngularFireModule } from '@angular/fire/compat';
+import { StarRatingComponent } from './star-rating/star-rating.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'post-list', pathMatch: 'full'},
@@ -34,7 +35,8 @@ const routes: Routes = [
     PostEditComponent,
     PostListComponent,
     SignInComponent,
-    SignUpComponent
+    SignUpComponent,
+    StarRatingComponent
   ],
   imports: [
     BrowserModule,

@@ -8,8 +8,4 @@
     <button *ngFor="let page of getPageNumbers()" (click)="goToPage(page)" class="btn btn-outline-primary">{{ page }}</button>
     <button (click)="nextPage()" class="btn btn-outline-primary">Next</button>
   </div>
-
-  <div>
-    <p>Page {{ currentPage }} of {{ getPageNumbers().length }}</p>
-  </div>
 </div>
