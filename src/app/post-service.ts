@@ -2,12 +2,13 @@ import { EventEmitter, Injectable } from "@angular/core";
 import { Post } from './post.model';
 import { HttpClient } from "@angular/common/http";
 import { Subject } from "rxjs";
+import { NotificationService } from './notification.service';
 
 @Injectable({ providedIn: 'root' })
 export class PostService{
 
   
-    constructor(private http: HttpClient) {
+    constructor(private http: HttpClient,private notificationService: NotificationService) {
         this.fetchData();
     }
 
@@ -93,6 +94,7 @@ submitComment(index: number, comment: string) { // or comment: Comment
         this.listOfPosts)
         .subscribe((res) => {
             console.log(res);
+            this.notificationService.notifyNewPost();
         });
     }
 

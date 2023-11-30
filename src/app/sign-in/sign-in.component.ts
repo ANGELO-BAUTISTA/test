@@ -16,20 +16,20 @@ export class SignInComponent {
     this.password = '';
   }
 
-  // signIn() {
-  //   this.authService.signIn(this.username, this.password).then((user) => {
-  //     if (user) {
-  //       console.log('User logged in:', user);
-  //       this.router.navigate(['/post-list']); // replace '/post-list' with the route to your post list page
-  //     } else {
-  //       console.log('No user logged in');
-  //     }
-  //   });
-  // }
   signIn() {
-    this.authService.signIn(this.username, this.password).then(() => {
-      this.router.navigate(['/post-list']); // replace '/post-list' with the route to your post list page
-      console.log(this.username)
+    this.authService.signIn(this.username, this.password).then((user) => {
+      if (user) {
+        console.log('User logged in:', user);
+        this.router.navigate(['/post-list']); // replace '/post-list' with the route to your post list page
+      } else {
+        console.log('No user logged in');
+      }
     });
   }
+  // signIn() {
+  //   this.authService.signIn(this.username, this.password).then(() => {
+  //     this.router.navigate(['/post-list']); // replace '/post-list' with the route to your post list page
+  //     console.log(this.username)
+  //   });
+  // }
 }

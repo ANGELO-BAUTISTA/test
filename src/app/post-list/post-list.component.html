@@ -1,22 +1,15 @@
-<!-- Add [class.black-background] dynamically based on your dark mode state -->
-
-<div *ngFor="let searchResult" class="center-content black-background">
-  <app-post [post]="searchResult"></app-post>
-</div>
-
-<div *ngFor="let post of listOfPosts; let i = index" class="center-content black-background">
-  <app-post [post]="post" [index]="i"></app-post>
-</div>
-
 <div class="center-content black-background">
   <div *ngFor="let post of getPaginatedPosts(); let i = index">
     <app-post [post]="post" [index]="i"></app-post>
   </div>
 
-  
   <div>
     <button (click)="prevPage()" class="btn btn-outline-primary">Previous</button>
     <button *ngFor="let page of getPageNumbers()" (click)="goToPage(page)" class="btn btn-outline-primary">{{ page }}</button>
     <button (click)="nextPage()" class="btn btn-outline-primary">Next</button>
+  </div>
+
+  <div>
+    <p>Page {{ currentPage }} of {{ getPageNumbers().length }}</p>
   </div>
 </div>

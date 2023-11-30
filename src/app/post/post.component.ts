@@ -14,6 +14,7 @@ export class PostComponent implements OnInit{
   @Input() post?: Post;
   newComment: any;
   viewCount: number = 0;
+  url?: string;
   constructor(private postService: PostService, private router: Router) {
 
    }
@@ -41,7 +42,14 @@ export class PostComponent implements OnInit{
     this.postService.onAngry(this.index);
     }
 }
+onShare() {
+  const duplicatedPost = JSON.parse(JSON.stringify(this.post));
 
+  duplicatedPost.title = 'Shared: ' + duplicatedPost.title;
+  if (this.post) {
+    this.post.push(duplicatedPost);
+  }
+}
   
   
   addComment(){

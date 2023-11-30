@@ -12,23 +12,25 @@ export class PostListComponent implements OnInit {
   listOfPosts: Post[] = []; 
   searchResult: Post[] = [];
   pageSize: number = 1; // Number of posts to display per page
-  currentPage: number = 0;
+  currentPage: number = 1;
 
   constructor(private postService: PostService, private backEndService: BackEndService) {}
 
   ngOnInit(): void {
-    this.listOfPosts=this.postService.getPost();
+    this.listOfPosts = this.postService.getPost();
     this.postService.listChangedEvent.subscribe((posts: Post[]) => {
       this.listOfPosts = posts;
 
       this.postService.searchResults.subscribe(results => {
         this.searchResult = results;
-      })
-  });
-    
+      });
+    });
   }
+
   nextPage() {
-    this.currentPage++;
+    if (this.currentPage < this.getPageNumbers().length) {
+      this.currentPage++;
+    }
   }
 
   prevPage() {
@@ -52,5 +54,3 @@ export class PostListComponent implements OnInit {
     return Array.from({ length: pageCount }, (_, index) => index + 1);
   }
 }
-
-

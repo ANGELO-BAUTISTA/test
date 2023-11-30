@@ -1,4 +1,7 @@
 export class Post{
+    push(duplicatedPost: any) {
+      throw new Error('Method not implemented.');
+    }
     content: any;
     constructor(
         public title: string,
