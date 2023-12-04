@@ -15,7 +15,7 @@ import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
 import { environment } from './environment/environment';
 import { AngularFireModule } from '@angular/fire/compat';
 import { StarRatingComponent } from './star-rating/star-rating.component';
-
+import { AuthGuard } from './auth.guard';
 const routes: Routes = [
   { path: '', redirectTo: 'post-list', pathMatch: 'full'},
   { path: 'post-list', component: PostListComponent },
@@ -24,6 +24,8 @@ const routes: Routes = [
   { path: 'post-edit/:index', component: PostEditComponent },
   {path: 'sign-in', component: SignInComponent},
   {path: 'sign-up', component: SignUpComponent},
+  { path: 'post-list', component: PostListComponent, canActivate: [AuthGuard] },
+  { path: 'post-add', component: PostEditComponent, canActivate: [AuthGuard] },
 ];
 
 @NgModule({

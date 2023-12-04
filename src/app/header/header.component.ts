@@ -2,7 +2,9 @@
 import { Component, OnInit } from '@angular/core';
 import { BackEndService } from '../back-end.service';
 import { PostService } from '../post-service';
-import { NotificationService } from '../notification.service';  // Add this line
+import { NotificationService } from '../notification.service'; 
+import { AuthService } from '../auth.service';
+import { Router } from '@angular/router'; // Add this line
 
 @Component({
   selector: 'app-header',
@@ -18,7 +20,9 @@ export class HeaderComponent implements OnInit {
   constructor(
     private backEndService: BackEndService,
     private postService: PostService,
-    private notificationService: NotificationService  // Add this line
+    private notificationService: NotificationService,
+    private authService: AuthService,  
+    private router: Router
   ) {
     this.searchKeyword = '';
   }
@@ -44,6 +48,12 @@ export class HeaderComponent implements OnInit {
 
   onFetch() {
     this.backEndService.fetchData();
+  }
+  
+  logout() {
+    this.authService.signOut().then(() => {
+      this.router.navigate(['/login']);
+    });
   }
 
   searchPosts() {
