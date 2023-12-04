@@ -26,10 +26,4 @@ export class SignInComponent {
       }
     });
   }
-  // signIn() {
-  //   this.authService.signIn(this.username, this.password).then(() => {
-  //     this.router.navigate(['/post-list']); // replace '/post-list' with the route to your post list page
-  //     console.log(this.username)
-  //   });
-  // }
 }

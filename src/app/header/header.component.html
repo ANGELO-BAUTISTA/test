@@ -43,8 +43,8 @@
           <input [(ngModel)]="searchKeyword"  type="search"  aria-label="Search" (keyup)="searchPosts()">&nbsp;&nbsp;&nbsp;
           <button class="btn-outline-primary" type="submit" routerLink="/sign-in">SIGN IN</button>&nbsp; &nbsp;
           <button class="btn-outline-info" type="submit" routerLink="/sign-up" >SIGN UP</button>&nbsp; &nbsp;
-          <button class="btn btn-link" style="background: none; border: none;" (click)="logout()">
-            Logout
+          <button class="btn btn-outline-danger" style="background: none; border: none;" (click)="logout()">
+            LOGOUT
           </button>
         </form>
       </div>

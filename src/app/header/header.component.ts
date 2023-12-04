@@ -49,10 +49,9 @@ export class HeaderComponent implements OnInit {
   onFetch() {
     this.backEndService.fetchData();
   }
-  
-  logout() {
+   logout() {
     this.authService.signOut().then(() => {
-      this.router.navigate(['/login']);
+      this.router.navigate(['/sign-in']);
     });
   }
 

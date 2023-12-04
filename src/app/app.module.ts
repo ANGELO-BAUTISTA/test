@@ -12,10 +12,13 @@ import { HttpClientModule } from '@angular/common/http';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
-import { environment } from './environment/environment';
 import { AngularFireModule } from '@angular/fire/compat';
 import { StarRatingComponent } from './star-rating/star-rating.component';
-import { AuthGuard } from './auth.guard';
+import { environment } from './environment/environment';
+
+// import { firebaseConfig } from './environment/environment'; // Add this line
+
+// rest of your code
 const routes: Routes = [
   { path: '', redirectTo: 'post-list', pathMatch: 'full'},
   { path: 'post-list', component: PostListComponent },
@@ -24,8 +27,8 @@ const routes: Routes = [
   { path: 'post-edit/:index', component: PostEditComponent },
   {path: 'sign-in', component: SignInComponent},
   {path: 'sign-up', component: SignUpComponent},
-  { path: 'post-list', component: PostListComponent, canActivate: [AuthGuard] },
-  { path: 'post-add', component: PostEditComponent, canActivate: [AuthGuard] },
+  { path: 'post-list', component: PostListComponent },
+  { path: 'post-add', component: PostEditComponent },
 ];
 
 @NgModule({
@@ -42,7 +45,7 @@ const routes: Routes = [
   ],
   imports: [
     BrowserModule,
-    provideFirebaseApp(() => initializeApp(environment)),
+    // provideFirebaseApp(() => initializeApp(firebaseConfig)),
     AngularFireModule.initializeApp(environment),
     RouterModule.forRoot(routes),
     ReactiveFormsModule, FormsModule, 

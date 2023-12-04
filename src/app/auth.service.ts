@@ -21,6 +21,12 @@ export class AuthService {
   }
 
   async signIn(email: string, password: string): Promise<User | null> {
+    // Validate email format
+    const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+    if (!emailPattern.test(email)) {
+      throw new Error('The email address is badly formatted.');
+    }
+  
     const credential = await this.firebaseAuth.signInWithEmailAndPassword(email, password);
     if (credential.user) {
       const user = {
@@ -32,6 +38,19 @@ export class AuthService {
     }
     return null;
   }
+  // async signIn(email: string, password: string): Promise<User | null> {
+  //   const credential = await this.firebaseAuth.signInWithEmailAndPassword(email, password);
+  //   if (credential.user) {
+  //     const user = {
+  //       ...credential.user,
+  //       providerData: credential.user.providerData.filter(pd => pd !== null) as UserInfo[]
+  //     };
+  //     this._user$.next(user);
+  //     return user;
+  //   }
+  //   return null;
+  // }
+
   async signUp(email: string, password: string) {
     await this.firebaseAuth.createUserWithEmailAndPassword(email, password);
   }
