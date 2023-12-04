@@ -9,17 +9,17 @@ import { AuthService } from '../auth.service';
   styleUrls: ['./sign-up.component.css']
 })
 export class SignUpComponent {
-  username: string;
+  email: string;
   password: string;
 
   constructor( private authService: AuthService, private router: Router) {
-    this.username = '';
+    this.email = '';
     this.password = '';
   }
   signUp() {
-    this.authService.signUp(this.username, this.password).then(() => {
+    this.authService.signUp(this.email, this.password).then(() => {
       this.router.navigate(['/sign-in']); // replace '/sign-in' with the route to your sign-in page
-      console.log(this.username)
+      console.log(this.email)
     });
   }
 }

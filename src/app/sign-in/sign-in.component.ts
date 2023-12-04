@@ -8,16 +8,16 @@ import { AuthService } from '../auth.service';
   styleUrls: ['./sign-in.component.css']
 })
 export class SignInComponent {
-  username: string;
+  email: string;
   password: string;
 
   constructor( private authService: AuthService, private router: Router) {
-    this.username = '';
+    this.email = '';
     this.password = '';
   }
 
   signIn() {
-    this.authService.signIn(this.username, this.password).then((user) => {
+    this.authService.signIn(this.email, this.password).then((user) => {
       if (user) {
         console.log('User logged in:', user);
         this.router.navigate(['/post-list']); // replace '/post-list' with the route to your post list page
