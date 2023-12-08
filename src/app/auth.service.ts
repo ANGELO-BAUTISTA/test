@@ -10,6 +10,7 @@ import { getAuth } from "firebase/auth";
   providedIn: 'root'
 })
 export class AuthService {
+  [x: string]: any;
   private _user$ = new BehaviorSubject<User | null>(null);
   user$ = this._user$.asObservable();
 
@@ -18,6 +19,9 @@ export class AuthService {
     this.firebaseAuth.authState.pipe(
       map(user => user ? { ...user, providerData: user.providerData.filter(pd => pd !== null) as UserInfo[] } : null)
     ).subscribe(user => this._user$.next(user));
+  }
+  public getIdToken() {
+    return this.firebaseAuth.idToken;
   }
 
   async signIn(email: string, password: string): Promise<User | null> {

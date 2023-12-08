@@ -16,6 +16,7 @@ import { AngularFireModule } from '@angular/fire/compat';
 import { StarRatingComponent } from './star-rating/star-rating.component';
 import { environment } from './environment/environment';
 import { AuthGuard } from './auth.guard';
+import { NoAuthGuard } from './noauth.guard';
 // import { firebaseConfig } from './environment/environment'; // Add this line
 
 // rest of your code
@@ -23,10 +24,10 @@ const routes: Routes = [
   { path: '', redirectTo: 'post-list', pathMatch: 'full'},
   { path: 'post-list', component: PostListComponent, canActivate: [AuthGuard] },
   { path: 'post-add', component: PostEditComponent, canActivate: [AuthGuard] },
-  { path: 'authentication', component: AuthComponent },
+  { path: 'authentication', component: AuthComponent ,canActivate: [AuthGuard] },
   { path: 'post-edit/:index', component: PostEditComponent, canActivate: [AuthGuard]},
-  {path: 'sign-in', component: SignInComponent,},
-  {path: 'sign-up', component: SignUpComponent},
+  {path: 'sign-in', component: SignInComponent,canActivate: [NoAuthGuard]},
+  {path: 'sign-up', component: SignUpComponent,canActivate: [NoAuthGuard]},
   { path: 'post-list', component: PostListComponent,canActivate: [AuthGuard] },
   { path: 'post-add', component: PostEditComponent ,canActivate: [AuthGuard]},
   { path: 'post-list', component: PostListComponent, canActivate: [AuthGuard] },
@@ -52,7 +53,7 @@ const routes: Routes = [
     RouterModule.forRoot(routes),
     ReactiveFormsModule, FormsModule, 
     HttpClientModule],
-  providers: [],
+  providers: [AuthGuard, NoAuthGuard],
   bootstrap: [AppComponent],
 })
 export class AppModule { }
