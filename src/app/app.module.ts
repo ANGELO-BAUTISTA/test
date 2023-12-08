@@ -15,20 +15,22 @@ import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
 import { AngularFireModule } from '@angular/fire/compat';
 import { StarRatingComponent } from './star-rating/star-rating.component';
 import { environment } from './environment/environment';
-
+import { AuthGuard } from './auth.guard';
 // import { firebaseConfig } from './environment/environment'; // Add this line
 
 // rest of your code
 const routes: Routes = [
   { path: '', redirectTo: 'post-list', pathMatch: 'full'},
-  { path: 'post-list', component: PostListComponent },
-  { path: 'post-add', component: PostEditComponent },
+  { path: 'post-list', component: PostListComponent, canActivate: [AuthGuard] },
+  { path: 'post-add', component: PostEditComponent, canActivate: [AuthGuard] },
   { path: 'authentication', component: AuthComponent },
-  { path: 'post-edit/:index', component: PostEditComponent },
-  {path: 'sign-in', component: SignInComponent},
+  { path: 'post-edit/:index', component: PostEditComponent, canActivate: [AuthGuard]},
+  {path: 'sign-in', component: SignInComponent,},
   {path: 'sign-up', component: SignUpComponent},
-  { path: 'post-list', component: PostListComponent },
-  { path: 'post-add', component: PostEditComponent },
+  { path: 'post-list', component: PostListComponent,canActivate: [AuthGuard] },
+  { path: 'post-add', component: PostEditComponent ,canActivate: [AuthGuard]},
+  { path: 'post-list', component: PostListComponent, canActivate: [AuthGuard] },
+  { path: 'post-add', component: PostEditComponent, canActivate: [AuthGuard] },
 ];
 
 @NgModule({

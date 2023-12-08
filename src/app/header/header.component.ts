@@ -16,7 +16,8 @@ export class HeaderComponent implements OnInit {
   searchKeyword: string = "";
   filteredPosts: any[] = [];
   posts: any[] = [];
-
+  user$ = this.authService.user$;
+  
   constructor(
     private backEndService: BackEndService,
     private postService: PostService,
