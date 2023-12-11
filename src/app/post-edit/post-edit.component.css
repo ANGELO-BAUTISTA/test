@@ -1,29 +1,64 @@
-input.ng-invalidng.touched, textarea.ng-invalid.ng-touched{
-    border: 1px solid #d44d09;
-}
-form {
-    background-color: #000000;
-    padding: 100px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-label {
-    display: block;
-    margin: 10px 0 5px;
-    color: #ffffff;
-}
-input {
-    width: 100%;
-    padding: 8px;
-    margin-bottom: 10px;
-    box-sizing: border-box;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-}
 body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f0f2f5;
     display: flex;
     align-items: center;
     justify-content: center;
     height: 100vh;
     margin: 0;
-}
+  }
+  
+  p {
+    text-align: center; /* Center the text horizontally */
+  }
+  
+  a {
+    text-decoration: underline;
+    color: #007bff;
+    cursor: pointer;
+  }
+  
+  a:hover {
+    text-decoration: none; /* Remove underline on hover */
+  }
+  
+  form {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    text-align: center;
+    margin: auto; 
+  }
+  
+
+  h2 {
+    color: #1877f2; /* Facebook blue color */
+  }
+
+  label {
+    display: block;
+    margin-top: 10px;
+  }
+
+  input {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+  }
+
+  button {
+    background-color: #1877f2; /* Facebook blue color */
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  button:hover {
+    background-color: #16509a; /* Darker shade on hover */
+  }

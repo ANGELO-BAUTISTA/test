@@ -17,6 +17,9 @@ import { StarRatingComponent } from './star-rating/star-rating.component';
 import { environment } from './environment/environment';
 import { AuthGuard } from './auth.guard';
 import { NoAuthGuard } from './noauth.guard';
+// Other imports...
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+// Rest of your code...
 // import { firebaseConfig } from './environment/environment'; // Add this line
 
 // rest of your code
@@ -50,10 +53,12 @@ const routes: Routes = [
     BrowserModule,
     // provideFirebaseApp(() => initializeApp(firebaseConfig)),
     AngularFireModule.initializeApp(environment),
+    AngularFirestoreModule,
     RouterModule.forRoot(routes),
     ReactiveFormsModule, FormsModule, 
     HttpClientModule],
   providers: [AuthGuard, NoAuthGuard],
   bootstrap: [AppComponent],
+  
 })
 export class AppModule { }

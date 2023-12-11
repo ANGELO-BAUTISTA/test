@@ -1,7 +1,9 @@
 // star-rating.component.ts
 import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { Firestore } from '@angular/fire/firestore';
 import { Post } from '../post.model';
+import { AngularFirestore, AngularFirestoreModule } from '@angular/fire/compat/firestore';
+
 
 @Component({
   selector: 'app-star-rating',
@@ -13,37 +15,36 @@ export class StarRatingComponent implements OnInit{
   @Output() ratingChange = new EventEmitter<number>();
   listOfPosts: any[] = [];
 
-  constructor(private http: HttpClient) { }
+  constructor(private firestore: AngularFirestore) { }
 
   ngOnInit() {
-    this.fetchData();
+    this.firestore.collection('ratings').valueChanges().subscribe((data: any[]) => {
+      if (data.length > 0) {
+        this.rating = data[0].rating;
+      }
+    });
   }
   fillStars(index: number): string {
     return index < this.rating ? 'filled' : 'empty';
-    this.saveData
+  
   }
 
   onStarClick(index: number): void {
     this.rating = index + 1;
     this.ratingChange.emit(this.rating);
-    this.saveData
+    this.saveRatingToFirestore();
   }
 
-  saveData() {
-    this.http.put('https://angularez-default-rtdb.firebaseio.com/posts.json', 
-    this.listOfPosts)
-    .subscribe((res) => {
-        console.log(res);
+  saveRatingToFirestore(): void {
+    this.firestore.collection('ratings').add({
+      rating: this.rating
+    }).then(() => {
+      console.log('Rating saved to Firestore');
+    }).catch((error) => {
+      console.error('Error saving rating to Firestore', error);
     });
   }
-
-  fetchData() {
-    this.http.get<Post[]>('https://angularez-default-rtdb.firebaseio.com/posts.json')
-    .subscribe((listofPosts: Post[]) => {
-        console.log(listofPosts)
-        this.setPosts(listofPosts);
-    });
-  } 
+ 
   setPosts(posts: Post[]): void {
     this.listOfPosts = posts;
   }
