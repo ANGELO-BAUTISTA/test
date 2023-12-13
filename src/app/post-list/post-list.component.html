@@ -1,5 +1,5 @@
 <div class="center-content black-background">
-  <div *ngFor="let post of getPaginatedPosts(); let i = index">
+  <div *ngFor="let post of getPaginatedPosts(); let i = index"><br>
     <app-post [post]="post" [index]="i"></app-post>
   </div>
 

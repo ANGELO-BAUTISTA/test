@@ -11,7 +11,7 @@ import { BackEndService } from '../back-end.service';
 export class PostListComponent implements OnInit {
   listOfPosts: Post[] = []; 
   searchResult: Post[] = [];
-  pageSize: number = 1; // Number of posts to display per page
+  pageSize: number = 3; // Number of posts to display per page
   currentPage: number = 1;
 
   constructor(private postService: PostService, private backEndService: BackEndService) {}

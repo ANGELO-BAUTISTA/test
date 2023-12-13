@@ -1,5 +1,4 @@
 <h2></h2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<p><a routerLink="/sign-up" style="text-decoration: underline;">Sign up</a></p>
 <form (submit)="signIn()">
     <label for="email">Email:</label>
     <input type="text" id="email" name="email" [(ngModel)]="email" required>
@@ -12,4 +11,7 @@
     <br>
     <br>
     <button type="submit">Sign In</button>
+    <br>
+    <br>
+    <p><a routerLink="/sign-up" style="text-decoration: underline;">Register</a></p>
 </form>

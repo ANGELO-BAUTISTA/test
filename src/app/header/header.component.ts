@@ -32,6 +32,9 @@ export class HeaderComponent implements OnInit {
     this.notificationService.newPost$.subscribe(() => {
       this.showNotification();
     });
+    this.postService.searchResults.subscribe((filteredPosts: any[]) => {
+      this.filteredPosts = filteredPosts;
+    });
   }
 
   showNotification() {
@@ -57,12 +60,6 @@ export class HeaderComponent implements OnInit {
   }
 
   searchPosts() {
-    if (this.searchKeyword && this.searchKeyword.trim() !== '') {
-      this.filteredPosts = this.posts.filter((post) => {
-        return post.title.toLowerCase().includes(this.searchKeyword.toLowerCase());
-      });
-    } else {
-      this.filteredPosts = this.posts;
-    }
-  }
+    this.postService.searchPosts(this.searchKeyword);
+}
 }
