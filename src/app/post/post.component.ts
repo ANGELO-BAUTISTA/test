@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, AfterViewInit } from '@angular/core';
 import { Post } from '../post.model';
 import { PostService } from '../post-service'; 
 import { Router } from '@angular/router';
@@ -9,7 +9,7 @@ import { AuthService } from '../auth.service';
   templateUrl: './post.component.html',
   styleUrls: ['./post.component.css']
 })
-export class PostComponent implements OnInit{
+export class PostComponent implements OnInit, AfterViewInit{
   @Input() index: number = 1;
   @Input() post?: Post;
   newComment: any;
@@ -19,6 +19,9 @@ export class PostComponent implements OnInit{
 
   constructor(private postService: PostService, private router: Router) {}
 
+  ngAfterViewInit(): void {
+    this.viewCount++;
+  }
   ngOnInit(): void {
     console.log(this.post)
     console.log(this.index)
@@ -49,15 +52,17 @@ export class PostComponent implements OnInit{
 
   onShare() {
     const duplicatedPost = JSON.parse(JSON.stringify(this.post));
-    duplicatedPost.title = 'Shared: ' + duplicatedPost.title;
-    if (this.post) {
-      this.post.push(duplicatedPost);
-    }
+    duplicatedPost.title = '' + duplicatedPost.title;
+    this.postService.addPost(duplicatedPost);
   }
 
   addComment(){
-    if (this.newComment){
-      this.post?.comments.push(this.newComment);
+    if (this.newComment && this.post){
+      if (!this.post.comments) {
+        this.post.comments = [];
+      }
+      this.post.comments.push(this.newComment);
+      this.postService.updatePost(this.index, this.post);
       this.newComment = '';
     }
   }

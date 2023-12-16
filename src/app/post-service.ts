@@ -64,15 +64,15 @@ export class PostService{
     }
    // ... rest of the class here
 
-addComment(index: number, comment: string) { // or comment: Comment
-  this.listOfPosts[index].comments.push(comment);
-  this.saveData();
-}
-
-deleteComment(postIndex: number, commentIndex: number) {
-  this.listOfPosts[postIndex].comments.splice(commentIndex, 1);
-  this.saveData();
-}
+   addComment(index: number, comment: string) {
+    this.listOfPosts[index].comments.push(comment);
+    this.saveData();
+  }
+  
+  deleteComment(postIndex: number, commentIndex: number) {
+    this.listOfPosts[postIndex].comments.splice(commentIndex, 1);
+    this.saveData();
+  }
 
 submitComment(index: number, comment: string) { // or comment: Comment
   this.addComment(index, comment);
